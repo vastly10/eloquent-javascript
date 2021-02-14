@@ -1,0 +1,43 @@
+<!doctype html>
+<html>
+<head>
+    <title>My home page</title>
+</head>
+<body>
+<h1>My home page</h1>
+<p>Hello, I am Marijn and this is my home page.</p>
+<p>I also wrote a book! Read it
+    <a href="http://eloquentjavascript.net">here</a>.</p>
+<p>My ostrich Gertrude:</p>
+<p><img id="gertrude" src="img/ostrich.png"></p>
+
+<script>
+    let ostrich = document.getElementById("gertrude");
+    console.log(ostrich.src);
+</script>
+<p>One</p>
+<p>Two</p>
+<p>Three</p>
+
+<script>
+    let paragraphs = document.body.getElementsByTagName("p");
+    document.body.insertBefore(paragraphs[2], paragraphs[0]);
+</script>
+</body>
+<script>
+    function talksAbout(node, string) {
+        if (node.nodeType == Node.ELEMENT_NODE) {
+            for (let child of node.childNodes) {
+                if (talksAbout(child, string)) return true;
+            }
+            return false;
+        } else if (node.nodeType == Node.TEXT_NODE) {
+            return node.nodeValue.indexOf(string) > -1;
+        }
+    }
+    console.log(talksAbout(document.body, "book"));
+
+    let link = document.body.getElementsByTagName('a')[0];
+    console.log(link.href);
+</script>
+</html>
